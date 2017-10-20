@@ -38,4 +38,10 @@ body {
     width: 90%; /* = 100% - 2*5% padding */
     padding: 10% 5%;
     color: whitesmoke;
+    align-content:center;
+}
+
+.tictactoetable {
+
+margin-left: 20px;
 }

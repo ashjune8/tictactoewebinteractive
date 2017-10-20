@@ -16,6 +16,8 @@ var turn //1 is player1 turn and 2 is player2 turn
 var tdheight = board[0].offsetHeight;
 var tdwidth = board[0].offsetWidth;
 var winsound = new Audio("win.mp3")
+var intializesymbol = "?";
+intializeboard();
 //Hover over table
 for (var i = 0; i < board.length; i++) {
 
@@ -138,7 +140,7 @@ player2nameinputform.addEventListener("change", function () {
     function intializeboard() {
         for (var i = 0; i < board.length; i++) {
 
-            board[i].innerHTML = "";
+            board[i].innerHTML = intializesymbol;
 
         }
     }
@@ -148,7 +150,7 @@ player2nameinputform.addEventListener("change", function () {
     });
     function handleFunction(elem) {
 
-        if (elem.innerHTML === "" && gameon === true) {
+        if (elem.innerHTML === intializesymbol && gameon === true) {
 
             if (turn === 1) {
 
@@ -1075,7 +1077,7 @@ function tie() {
 
     for (var i = 0; i < board.length; i++) {
 
-        if (board[i].innerHTML === "") {
+        if (board[i].innerHTML === intializesymbol) {
             return false;
         }
 
