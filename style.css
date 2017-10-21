@@ -2,7 +2,7 @@ body {
     background-color: darkslategrey;
     font-family: 'Josefin Sans', sans-serif;
     text-align: center;
-    font-size: small;
+    font-size: large;
 }
 
 #wholewindow {
@@ -81,14 +81,14 @@ border: none;
         width: 100%;
         height: auto;
        
-        font-size:x-small;
+        font-size:small;
     }
 
     #gameinfo {
         width: 100%;
         height: auto;
         
-        font-size: x-small;
+        font-size: small;
     }
     
 }
