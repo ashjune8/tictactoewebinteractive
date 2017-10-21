@@ -194,3 +194,8 @@ td:before {
 
 }
 
+.buttonhovercolor {
+    background-color: grey;
+    opacity: 0.7;
+}
+

@@ -23,6 +23,30 @@ var flashrepeatcountlimit = 10;
 
 intializeboard();
 
+//buttonhover
+var buttons = document.querySelectorAll("button")
+
+for (var i = 0; i < buttons.length; i++) {
+
+    buttons[i].addEventListener("mouseover", function () {
+
+        this.classList.add('buttonhovercolor');
+
+    })
+
+}
+
+for (var i = 0; i < buttons.length; i++) {
+
+    buttons[i].addEventListener("mouseout", function () {
+
+        this.classList.remove('buttonhovercolor');
+
+    })
+
+}
+
+
 //Hover over table
 for (var i = 0; i < board.length; i++) {
 
@@ -39,9 +63,7 @@ for (var i = 0; i < board.length; i++) {
     board[i].addEventListener("mouseout", function () {
 
         this.classList.remove('hovercolor');
-        this.innerHTML.style.color = "whitesmoke";
         
-        this.innerHTML.style.textAlign = "center";
     })
 
 }
