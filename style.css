@@ -1,0 +1,196 @@
+body {
+    background-color: darkslategrey;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    font-size: large;
+}
+
+#wholewindow {
+
+margin-top: 15px;
+
+}
+.text-centre {
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+}
+
+
+#texthr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+#tictactoediv {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 0.5%;
+}
+
+#tictactoedivmessage {
+    
+    
+    
+}
+
+#playerinfodiv {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+
+.table-responsive {
+
+border: none;
+}
+
+
+#tictactoetable {
+    width: 30vw;
+    height: auto;
+    position: center;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    border-color: whitesmoke;
+    border: 5px solid whitesmoke;
+    background-color: black;
+    
+}
+
+@media (max-width : 320px) {
+    #tictactoetable {
+        width: 60vw;
+        height: auto;
+        position: center;
+        text-align: center;
+        justify-content: center;
+        align-content: center;
+        border-color: whitesmoke;
+        border: 5px solid whitesmoke;
+        background-color: black;
+        margin-left:15%;
+    }
+
+    #playerinfo {
+        width: 100%;
+        height: auto;
+       
+        font-size:small;
+    }
+
+    #gameinfo {
+        width: 100%;
+        height: auto;
+        
+        font-size: small;
+    }
+    
+}
+@media (max-width : 480px) {
+    #tictactoetable {
+        width: 60vw;
+        height: auto;
+        position: center;
+        text-align: center;
+        justify-content: center;
+        align-content: center;
+        border-color: whitesmoke;
+        border: 5px solid whitesmoke;
+        background-color: black;
+        margin-left: 15%;
+    }
+}
+
+@media (max-width : 768px) {
+    #tictactoetable {
+        width: 60vw;
+        height: auto;
+        position: center;
+        text-align: center;
+        justify-content: center;
+        align-content: center;
+        border-color: whitesmoke;
+        border: 5px solid whitesmoke;
+        background-color: black;
+        margin-left: 17%;
+    }
+}
+
+@media (max-height : 480px) {
+    #tictactoetable {
+        width: 60vw;
+        height: auto;
+        position: center;
+        text-align: center;
+        justify-content: center;
+        align-content: center;
+        border-color: whitesmoke;
+        border: 5px solid whitesmoke;
+        background-color: black;
+        margin-left: 15%;
+    }
+    
+}
+
+td {
+    width: 33.333%;
+    font-size: 3vw;
+    color: whitesmoke;
+}
+   
+
+tr {
+    border-color: whitesmoke;
+    border: 5px solid whitesmoke;
+
+}
+
+td:after {
+    content: "";
+    
+    display: block;
+    padding-bottom: 35%;
+}
+td:before {
+    content: "";
+    display: block;
+    padding-top: 35%;
+}
+
+
+
+.table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+    border: 5px solid whitesmoke;
+}
+
+#playerinfo {
+    width: 80%;
+    height: auto;
+    float:left;
+    display:block;
+    clear:left;
+    margin-left: 12%;
+
+}
+
+#gameinfo {
+    width: 80%;
+    height: auto;
+    float: left;
+    display: block;
+    position: center;
+    margin-left: 12%;
+}
+
+.hovercolor{
+    background-color:grey;
+    opacity:0.5;
+
+}
+
