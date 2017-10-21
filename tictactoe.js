@@ -22,52 +22,102 @@ var timeoutinterval = 2000;
 var flashrepeatcountlimit = 10;
 
 intializeboard();
+var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
 //buttonhover
 var buttons = document.querySelectorAll("button")
+//for touch screen
+if (supportsTouch) {
+    for (var i = 0; i < buttons.length; i++) {
 
-for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("touchstart", function () {
 
-    buttons[i].addEventListener("mouseover", function () {
+            this.classList.add('buttonhovercolor');
 
-        this.classList.add('buttonhovercolor');
+        })
 
-    })
+    }
 
+    for (var i = 0; i < buttons.length; i++) {
+
+        buttons[i].addEventListener("touchend", function () {
+
+            this.classList.remove('buttonhovercolor');
+
+        })
+
+    }
 }
+    else{
+    //for mouse
+    for (var i = 0; i < buttons.length; i++) {
 
-for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("mouseover", function () {
 
-    buttons[i].addEventListener("mouseout", function () {
+            this.classList.add('buttonhovercolor');
 
-        this.classList.remove('buttonhovercolor');
+        })
 
-    })
+    }
 
+    for (var i = 0; i < buttons.length; i++) {
+
+        buttons[i].addEventListener("mouseout", function () {
+
+            this.classList.remove('buttonhovercolor');
+
+        })
+
+    }
 }
-
 
 //Hover over table
-for (var i = 0; i < board.length; i++) {
+//for touch screen
+if (supportsTouch) {
 
-    board[i].addEventListener("mouseover", function () {
+    for (var i = 0; i < board.length; i++) {
 
-        this.classList.add('hovercolor');
+        board[i].addEventListener("touchstart", function () {
 
-    })
- 
+            this.classList.add('hovercolor');
+
+        })
+
+    }
+
+    for (var i = 0; i < board.length; i++) {
+
+        board[i].addEventListener("touchend", function () {
+
+            this.classList.remove('hovercolor');
+
+        })
+
+    }
 }
 
-for (var i = 0; i < board.length; i++) {
+else {
+    //for mouse
+    for (var i = 0; i < board.length; i++) {
 
-    board[i].addEventListener("mouseout", function () {
+        board[i].addEventListener("mouseover", function () {
 
-        this.classList.remove('hovercolor');
-        
-    })
+            this.classList.add('hovercolor');
 
+        })
+
+    }
+
+    for (var i = 0; i < board.length; i++) {
+
+        board[i].addEventListener("mouseout", function () {
+
+            this.classList.remove('hovercolor');
+
+        })
+
+    }
 }
-
 //Click Sound Effects
 var audio = new Audio('click.mp3');
 $('td').click(function () {
