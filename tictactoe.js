@@ -16,14 +16,43 @@ var turn //1 is player1 turn and 2 is player2 turn
 var tdheight = board[0].offsetHeight;
 var tdwidth = board[0].offsetWidth;
 var winsound = new Audio("win.mp3")
+var intializesymbol = "+";
+var flashinterval = 200;
+var timeoutinterval = 2000;
+var flashrepeatcountlimit = 10;
+
+intializeboard();
+
+//buttonhover
+var buttons = document.querySelectorAll("button")
+
+for (var i = 0; i < buttons.length; i++) {
+
+    buttons[i].addEventListener("mouseover", function () {
+
+        this.classList.add('buttonhovercolor');
+
+    })
+
+}
+
+for (var i = 0; i < buttons.length; i++) {
+
+    buttons[i].addEventListener("mouseout", function () {
+
+        this.classList.remove('buttonhovercolor');
+
+    })
+
+}
+
+
 //Hover over table
 for (var i = 0; i < board.length; i++) {
 
     board[i].addEventListener("mouseover", function () {
 
-        this.style.backgroundColor = "grey";
-        this.style.opacity = "0.5";
-        this
+        this.classList.add('hovercolor');
 
     })
  
@@ -33,9 +62,8 @@ for (var i = 0; i < board.length; i++) {
 
     board[i].addEventListener("mouseout", function () {
 
-        this.style.backgroundColor = "black";
-        this
-
+        this.classList.remove('hovercolor');
+        
     })
 
 }
@@ -73,8 +101,8 @@ player1buttonx.addEventListener("click", function () {
 
     player1buttono.style.visibility = 'hidden';
     player2buttonx.style.visibility = 'hidden';
-
-    gamemessage.textContent = "Player2 your symbol is O, please type your name";
+    if (player1name === "") { gamemessage.textContent = "Player1 please type your name too. Player2 your symbol is O, please type your name"; }
+    else { gamemessage.textContent = "Player2 your symbol is O, please type your name"; }
 
 
 
@@ -90,7 +118,8 @@ player1buttono.addEventListener("click", function () {
     player1buttonx.style.visibility = 'hidden';
     player2buttono.style.visibility = 'hidden';
 
-    gamemessage.textContent = "Player2 your symbol is X, please type your name";
+    if (player1name === "") { gamemessage.textContent = "Player1 please type your name too. Player2 your symbol is X, please type your name"; }
+    else { gamemessage.textContent = "Player2 your symbol is X, please type your name"; }
 })
 
 
@@ -117,14 +146,14 @@ player2nameinputform.addEventListener("change", function () {
             window.setTimeout(function () {
                 gameon = true;
                 if (random === 0) {
-                    gamemessage.textContent = "Player1 it is your turn first";
+                    gamemessage.textContent = player1name + " it is your turn first";
                     turn = 1;
                 }
                 else {
-                    gamemessage.textContent = "Player2 it is your turn first";
+                    gamemessage.textContent = player2name + " it is your turn first";
                     turn = 2;
                 }
-            }, 3000);
+            }, timeoutinterval);
 
 
         }
@@ -138,7 +167,10 @@ player2nameinputform.addEventListener("change", function () {
     function intializeboard() {
         for (var i = 0; i < board.length; i++) {
 
-            board[i].innerHTML = "";
+            board[i].innerHTML = intializesymbol;
+           
+
+           
 
         }
     }
@@ -148,7 +180,7 @@ player2nameinputform.addEventListener("change", function () {
     });
     function handleFunction(elem) {
 
-        if (elem.innerHTML === "" && gameon === true) {
+        if (elem.innerHTML === intializesymbol && gameon === true) {
 
             if (turn === 1) {
 
@@ -160,14 +192,14 @@ player2nameinputform.addEventListener("change", function () {
                     window.setTimeout(function () {
                         gameon = true;
                         if (random === 0) {
-                            gamemessage.textContent = "Player1 it is your turn first";
+                            gamemessage.textContent = player1name + " it is your turn first";
                             turn = 1;
                         }
                         else {
-                            gamemessage.textContent = "Player2 it is your turn first";
+                            gamemessage.textContent = player2name + " it is your turn first";
                             turn = 2;
                         }
-                    }, 3000);
+                    }, timeoutinterval);
                 }
                 else if (tie() === true) {
 
@@ -181,19 +213,19 @@ player2nameinputform.addEventListener("change", function () {
                     window.setTimeout(function () {
                         gameon = true;
                         if (random === 0) {
-                            gamemessage.textContent = "Player1 it is your turn first";
+                            gamemessage.textContent = player1name + " it is your turn first";
                             turn = 1;
                         }
                         else {
-                            gamemessage.textContent = "Player2 it is your turn first";
+                            gamemessage.textContent = player2name + " it is your turn first";
                             turn = 2;
                         }
-                    }, 3000);
+                    }, timeoutinterval);
 
                 }
                 else {
                     turn = 2;
-                    gamemessage.textContent = "Player2 it is your turn now";
+                    gamemessage.textContent = player2name + " it is your turn now";
 
                 }
                 
@@ -211,14 +243,14 @@ player2nameinputform.addEventListener("change", function () {
                     window.setTimeout(function () {
                         gameon = true;
                         if (random === 0) {
-                            gamemessage.textContent = "Player1 it is your turn first";
+                            gamemessage.textContent = player1name + " it is your turn first";
                             turn = 1;
                         }
                         else {
-                            gamemessage.textContent = "Player2 it is your turn first";
+                            gamemessage.textContent = player2name + " it is your turn first";
                             turn = 2;
                         }
-                    }, 3000);
+                    }, timeoutinterval);
                 }
                 else if (tie() === true) {
 
@@ -232,19 +264,19 @@ player2nameinputform.addEventListener("change", function () {
                     window.setTimeout(function () {
                         gameon = true;
                         if (random === 0) {
-                            gamemessage.textContent = "Player1 it is your turn first";
+                            gamemessage.textContent = player1name + " it is your turn first";
                             turn = 1;
                         }
                         else {
-                            gamemessage.textContent = "Player2 it is your turn first";
+                            gamemessage.textContent = player2name + " it is your turn first";
                             turn = 2;
                         }
-                    }, 3000);
+                    }, timeoutinterval);
 
                 }
                 else {
                     turn = 1;
-                    gamemessage.textContent = "Player1 it is your turn now";
+                    gamemessage.textContent = player1name + " it is your turn now";
 
                 }
 
@@ -283,7 +315,7 @@ function win() {
             var refreshintervalid = window.setInterval(function () {
                
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[0].style.visibility = "visible"
                     board[1].style.visibility = "visible"
@@ -307,17 +339,17 @@ function win() {
 
                 }
 
-            }, 100);
-
+            }, flashinterval);
+            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
             
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player1 won this game. We are all set to start the game. Running random turn algorithm";
+                
             // you have to put a delay function here
 
-            }, 2000);
+            }, timeoutinterval);
 
 
            
@@ -333,7 +365,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[0].style.visibility = "visible"
                     board[1].style.visibility = "visible"
@@ -357,16 +389,16 @@ function win() {
 
                 }
 
-            }, 100);
+            }, flashinterval);
 
-
+            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player2 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
             
 
 
@@ -386,7 +418,7 @@ function win() {
             winsound.play();
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[3].style.visibility = "visible"
                     board[4].style.visibility = "visible"
@@ -410,16 +442,16 @@ function win() {
 
                 }
 
-            }, 100);
+            }, flashinterval);
 
-
+            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player1 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
             
 
         }
@@ -433,7 +465,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[3].style.visibility = "visible"
                     board[4].style.visibility = "visible"
@@ -457,16 +489,16 @@ function win() {
 
                 }
 
-            }, 100);
-
+            }, flashinterval);
+            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
 
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player2 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
 
 
         }
@@ -484,7 +516,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[6].style.visibility = "visible"
                     board[7].style.visibility = "visible"
@@ -508,16 +540,16 @@ function win() {
 
                 }
 
-            }, 100);
+            }, flashinterval);
 
-
+            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player1 won this game. We are all set to start the game. Running random turn algorithm";
+               
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
            
 
         }
@@ -531,7 +563,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[6].style.visibility = "visible"
                     board[7].style.visibility = "visible"
@@ -555,16 +587,16 @@ function win() {
 
                 }
 
-            }, 100);
+            }, flashinterval);
 
-
+            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player2 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
 
 
 
@@ -583,7 +615,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[0].style.visibility = "visible"
                     board[3].style.visibility = "visible"
@@ -607,16 +639,16 @@ function win() {
 
                 }
 
-            }, 100);
-
+            }, flashinterval);
+            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
 
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player1 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
 
            
 
@@ -631,7 +663,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[0].style.visibility = "visible"
                     board[3].style.visibility = "visible"
@@ -655,16 +687,16 @@ function win() {
 
                 }
 
-            }, 100);
+            }, flashinterval);
 
-
+            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player2 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
             
 
 
@@ -683,7 +715,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[1].style.visibility = "visible"
                     board[4].style.visibility = "visible"
@@ -707,16 +739,16 @@ function win() {
 
                 }
 
-            }, 100);
-
+            }, flashinterval);
+            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
 
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player1 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
 
         }
         else {
@@ -728,7 +760,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[1].style.visibility = "visible"
                     board[4].style.visibility = "visible"
@@ -752,16 +784,16 @@ function win() {
 
                 }
 
-            }, 100);
+            }, flashinterval);
 
-
+            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player2 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
 
            
 
@@ -781,7 +813,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[2].style.visibility = "visible"
                     board[5].style.visibility = "visible"
@@ -805,16 +837,16 @@ function win() {
 
                 }
 
-            }, 100);
+            }, flashinterval);
 
-
+            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player1 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
 
            
 
@@ -829,7 +861,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[2].style.visibility = "visible"
                     board[5].style.visibility = "visible"
@@ -853,16 +885,16 @@ function win() {
 
                 }
 
-            }, 100);
+            }, flashinterval);
 
-
+            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player2 won this game. We are all set to start the game. Running random turn algorithm";
+               
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
            
 
 
@@ -881,7 +913,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[0].style.visibility = "visible"
                     board[4].style.visibility = "visible"
@@ -905,16 +937,16 @@ function win() {
 
                 }
 
-            }, 100);
-
+            }, flashinterval);
+            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
 
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player1 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
             
 
         }
@@ -927,7 +959,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[0].style.visibility = "visible"
                     board[4].style.visibility = "visible"
@@ -951,16 +983,16 @@ function win() {
 
                 }
 
-            }, 100);
+            }, flashinterval);
 
-
+            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player2 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
            
 
 
@@ -979,7 +1011,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[2].style.visibility = "visible"
                     board[4].style.visibility = "visible"
@@ -1003,16 +1035,16 @@ function win() {
 
                 }
 
-            }, 100);
+            }, flashinterval);
 
-
+            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player1 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
             
 
         }
@@ -1025,7 +1057,7 @@ function win() {
 
             var refreshintervalid = window.setInterval(function () {
 
-                if (repeatcount === 10) {
+                if (repeatcount === flashrepeatcountlimit) {
                     clearInterval(refreshintervalid);
                     board[2].style.visibility = "visible"
                     board[4].style.visibility = "visible"
@@ -1049,16 +1081,16 @@ function win() {
 
                 }
 
-            }, 100);
-
+            }, flashinterval);
+            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
 
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
                 //randomize turn again
-                gamemessage.textContent = "Player2 won this game. We are all set to start the game. Running random turn algorithm";
+                
                 // you have to put a delay function here
-            }, 2000);
+            }, timeoutinterval);
 
 
         }
@@ -1075,7 +1107,7 @@ function tie() {
 
     for (var i = 0; i < board.length; i++) {
 
-        if (board[i].innerHTML === "") {
+        if (board[i].innerHTML === intializesymbol) {
             return false;
         }
 
