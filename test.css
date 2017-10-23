@@ -1,0 +1,47 @@
+body {
+    background-color: darkslategrey;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    font-size: x-small;
+}
+
+.text-centre {
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+}
+
+
+#texthr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+
+
+
+#square {
+    background-color: black;
+    margin: 1px;
+    border: 2px solid;
+    border-color: lightgrey;
+    justify-content: center;
+    width: 10%;
+    padding-bottom: 6%; /* = width for a 1:1 aspect ratio */
+    
+}
+
+.content {
+    position: absolute;
+    height: 80%; /* = 100% - 2*10% padding */
+    width: 90%; /* = 100% - 2*5% padding */
+    padding: 10% 5%;
+    color: whitesmoke;
+    align-content:center;
+}
+
+.tictactoetable {
+
+margin-left: 20px;
+}
