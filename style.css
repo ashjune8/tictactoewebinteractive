@@ -52,7 +52,7 @@ border: none;
 
 
 #tictactoetable {
-    width: 90%;
+    width: 100%;
     height: auto;
     position: center;
     text-align: center;
@@ -156,12 +156,12 @@ td:after {
     content: "";
     
     display: block;
-    padding-bottom: 35%;
+    padding-bottom: 30%;
 }
 td:before {
     content: "";
     display: block;
-    padding-top: 35%;
+    padding-top: 30%;
 }
 
 
@@ -176,7 +176,7 @@ td:before {
     float:left;
     display:block;
     clear:left;
-    margin-left: 12%;
+    margin-left: 9%;
 
 }
 
@@ -186,7 +186,7 @@ td:before {
     float: left;
     display: block;
     position: center;
-    margin-left: 12%;
+    margin-left: 9%;
     
 }
 
