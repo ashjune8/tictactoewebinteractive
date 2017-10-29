@@ -58,10 +58,9 @@ border: none;
     text-align: center;
     justify-content: center;
     align-content: center;
-    border-color: whitesmoke;
-    border: 5px solid whitesmoke;
-    background-color: black;
-   
+    border: none;
+    border-spacing: 5px;
+    border-collapse: separate;
 }
 
 @media (max-width : 320px) {
@@ -72,10 +71,8 @@ border: none;
         text-align: center;
         justify-content: center;
         align-content: center;
-        border-color: whitesmoke;
-        border: 5px solid whitesmoke;
-        background-color: black;
-        margin-left:30%;
+        border: none;
+        margin-left: 30%;
     }
 
     #playerinfo {
@@ -101,9 +98,7 @@ border: none;
         text-align: center;
         justify-content: center;
         align-content: center;
-        border-color: whitesmoke;
-        border: 5px solid whitesmoke;
-        background-color: black;
+        border: none;
         margin-left: 15%;
     }
 }
@@ -116,9 +111,7 @@ border: none;
         text-align: center;
         justify-content: center;
         align-content: center;
-        border-color: whitesmoke;
-        border: 5px solid whitesmoke;
-        background-color: black;
+        border: none;
         margin-left: 17%;
     }
 }
@@ -131,9 +124,7 @@ border: none;
         text-align: center;
         justify-content: center;
         align-content: center;
-        border-color: whitesmoke;
-        border: 5px solid whitesmoke;
-        background-color: black;
+        border: none;
         margin-left: 15%;
     }
     
@@ -143,13 +134,14 @@ td {
     width: 33.333%;
     font-size: 3vw;
     color: whitesmoke;
+    border-radius: 15%;
+    background-color: lightsteelblue;
+    transition: all 0.1s;
 }
-   
+
 
 tr {
-    border-color: whitesmoke;
-    border: 5px solid whitesmoke;
-
+    
 }
 
 td:after {
@@ -167,7 +159,7 @@ td:before {
 
 
 .table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
-    border: 5px solid whitesmoke;
+    border: none;
 }
 
 #playerinfo {
@@ -199,5 +191,14 @@ td:before {
 .buttonhovercolor {
     background-color: grey;
     opacity: 0.7;
+}
+
+button {
+    
+    background-color: darkslategrey;
+    transition: all 0.3s;
+    color: whitesmoke;
+    border-color: darkslategrey;
+    outline:none;
 }
 
