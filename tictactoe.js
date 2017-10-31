@@ -21,6 +21,34 @@ var flashinterval = 200;
 var timeoutinterval = 2000;
 var flashrepeatcountlimit = 10;
 
+var fadeintime = 500;
+var delaytime = 200;
+var textfadeout = 500;
+
+
+// fadein elements of page
+$("h2").fadeIn(fadeintime, function () {
+    $("hr").fadeIn(fadeintime, function () {
+        $("table").fadeIn(fadeintime, function () {
+
+            $("#gameinfo").fadeIn(fadeintime, function () {
+
+                $("#gameinfo span").each(function () {
+
+                    $(this).delay(delaytime).fadeIn(fadeintime);
+                    delaytime += 100;
+                })
+
+                $("#playerinfo").fadeIn(fadeintime);
+            })
+
+        })
+
+    })
+
+});
+
+
 intializeboard();
 var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
@@ -127,10 +155,15 @@ $('td').click(function () {
 //Player1 selects name
 var player1nameinputform = document.querySelector("#player1name");
 
+
 player1nameinputform.addEventListener("change", function () {
 
     player1name = player1nameinputform.value;
-    gamemessage.textContent = "Player1 choose your symbol";
+    $("#gamemessage").fadeOut(textfadeout,function () {
+        $("#gamemessage").text("Player1 choose your symbol").fadeIn(textfadeout)
+
+    })
+   
 
 })
 
@@ -151,8 +184,22 @@ player1buttonx.addEventListener("click", function () {
 
     player1buttono.style.visibility = 'hidden';
     player2buttonx.style.visibility = 'hidden';
-    if (player1name === "") { gamemessage.textContent = "Player1 please type your name too. Player2 your symbol is O, please type your name"; }
-    else { gamemessage.textContent = "Player2 your symbol is O, please type your name"; }
+    if (player1name === "") {
+
+        $("#gamemessage").fadeOut(textfadeout, function () {
+            $("#gamemessage").text("Player1 please type your name too. Player2 your symbol is O, please type your name").fadeIn(textfadeout)
+
+        })
+       
+    }
+    else {
+        $("#gamemessage").fadeOut(textfadeout, function () {
+            $("#gamemessage").text("Player2 your symbol is O, please type your name").fadeIn(textfadeout)
+
+        })
+
+        
+    }
 
 
 
@@ -168,8 +215,25 @@ player1buttono.addEventListener("click", function () {
     player1buttonx.style.visibility = 'hidden';
     player2buttono.style.visibility = 'hidden';
 
-    if (player1name === "") { gamemessage.textContent = "Player1 please type your name too. Player2 your symbol is X, please type your name"; }
-    else { gamemessage.textContent = "Player2 your symbol is X, please type your name"; }
+    if (player1name === "") {
+
+        $("#gamemessage").fadeOut(textfadeout, function () {
+            $("#gamemessage").text("Player1 please type your name too. Player2 your symbol is X, please type your name").fadeIn(textfadeout)
+
+        })
+
+
+        
+    }
+    else {
+
+        $("#gamemessage").fadeOut(textfadeout, function () {
+            $("#gamemessage").text("Player2 your symbol is X, please type your name").fadeIn(textfadeout)
+
+        })
+
+        
+    }
 })
 
 
@@ -181,7 +245,13 @@ player2nameinputform.addEventListener("change", function () {
 
     if (player1name === "") {
 
-        gamemessage.textContent = "Player1 please type your name first";
+
+        $("#gamemessage").fadeOut(textfadeout, function () {
+            $("#gamemessage").text("Player1 please type your name first").fadeIn(textfadeout)
+
+        })
+
+        
     }
 
     else {
@@ -189,18 +259,33 @@ player2nameinputform.addEventListener("change", function () {
 
 
         if (player1name !== "" && player2name !== "" && player1symbol !== "" && player2symbol !== "") {
+
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text("We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
+
             
-            gamemessage.textContent = "We are all set to start the game. Running random turn algorithm";
             // you have to put a delay function here
             var random = getRandomIntInclusive(0, 1);
             window.setTimeout(function () {
                 gameon = true;
                 if (random === 0) {
-                    gamemessage.textContent = player1name + " it is your turn first";
+
+                    $("#gamemessage").fadeOut(textfadeout, function () {
+                        $("#gamemessage").text(player1name + " it is your turn first").fadeIn(textfadeout)
+
+                    })
+
+                    
                     turn = 1;
                 }
                 else {
-                    gamemessage.textContent = player2name + " it is your turn first";
+
+                    $("#gamemessage").fadeOut(textfadeout, function () {
+                        $("#gamemessage").text(player2name + " it is your turn first").fadeIn(textfadeout)
+
+                    })
                     turn = 2;
                 }
             }, timeoutinterval);
@@ -242,11 +327,21 @@ player2nameinputform.addEventListener("change", function () {
                     window.setTimeout(function () {
                         gameon = true;
                         if (random === 0) {
-                            gamemessage.textContent = player1name + " it is your turn first";
+
+                            $("#gamemessage").fadeOut(textfadeout, function () {
+                                $("#gamemessage").text(player1name + " it is your turn first").fadeIn(textfadeout)
+
+                            })
+
+                            
                             turn = 1;
                         }
                         else {
-                            gamemessage.textContent = player2name + " it is your turn first";
+                            $("#gamemessage").fadeOut(textfadeout, function () {
+                                $("#gamemessage").text(player2name + " it is your turn first").fadeIn(textfadeout)
+
+                            })
+
                             turn = 2;
                         }
                     }, timeoutinterval);
@@ -257,17 +352,30 @@ player2nameinputform.addEventListener("change", function () {
 
                     intializeboard();
                     //randomize turn again
-                    gamemessage.textContent = "This Game is tied. We are all set to start the game. Running random turn algorithm";
-                    // you have to put a delay function here
+
+                    $("#gamemessage").fadeOut(textfadeout, function () {
+                        $("#gamemessage").text("This Game is tied. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+                    })
+
+                   // you have to put a delay function here
                     var random = getRandomIntInclusive(0, 1);
                     window.setTimeout(function () {
                         gameon = true;
                         if (random === 0) {
-                            gamemessage.textContent = player1name + " it is your turn first";
+                            $("#gamemessage").fadeOut(textfadeout, function () {
+                                $("#gamemessage").text(player1name + " it is your turn first").fadeIn(textfadeout)
+
+                            })
+
                             turn = 1;
                         }
                         else {
-                            gamemessage.textContent = player2name + " it is your turn first";
+                            $("#gamemessage").fadeOut(textfadeout, function () {
+                                $("#gamemessage").text(player2name + " it is your turn first").fadeIn(textfadeout)
+
+                            })
+
                             turn = 2;
                         }
                     }, timeoutinterval);
@@ -275,7 +383,10 @@ player2nameinputform.addEventListener("change", function () {
                 }
                 else {
                     turn = 2;
-                    gamemessage.textContent = player2name + " it is your turn now";
+                    $("#gamemessage").fadeOut(textfadeout, function () {
+                        $("#gamemessage").text(player2name + " it is your turn").fadeIn(textfadeout)
+
+                    })
 
                 }
                 
@@ -293,11 +404,19 @@ player2nameinputform.addEventListener("change", function () {
                     window.setTimeout(function () {
                         gameon = true;
                         if (random === 0) {
-                            gamemessage.textContent = player1name + " it is your turn first";
+
+                            $("#gamemessage").fadeOut(textfadeout, function () {
+                                $("#gamemessage").text(player1name + " it is your turn first").fadeIn(textfadeout)
+
+                            })
                             turn = 1;
                         }
                         else {
-                            gamemessage.textContent = player2name + " it is your turn first";
+                            $("#gamemessage").fadeOut(textfadeout, function () {
+                                $("#gamemessage").text(player2name + " it is your turn first").fadeIn(textfadeout)
+
+                            })
+
                             turn = 2;
                         }
                     }, timeoutinterval);
@@ -308,17 +427,29 @@ player2nameinputform.addEventListener("change", function () {
 
                     intializeboard();
                     //randomize turn again
-                    gamemessage.textContent = "This Game is tied. We are all set to start the game. Running random turn algorithm";
+                    $("#gamemessage").fadeOut(textfadeout, function () {
+                        $("#gamemessage").text("This Game is tied. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+                    })
+
+                    
                     // you have to put a delay function here
                     var random = getRandomIntInclusive(0, 1);
                     window.setTimeout(function () {
                         gameon = true;
                         if (random === 0) {
-                            gamemessage.textContent = player1name + " it is your turn first";
+                            $("#gamemessage").fadeOut(textfadeout, function () {
+                                $("#gamemessage").text(player1name + " it is your turn first").fadeIn(textfadeout)
+
+                            })
                             turn = 1;
                         }
                         else {
-                            gamemessage.textContent = player2name + " it is your turn first";
+                            $("#gamemessage").fadeOut(textfadeout, function () {
+                                $("#gamemessage").text(player2name + " it is your turn first").fadeIn(textfadeout)
+
+                            })
+
                             turn = 2;
                         }
                     }, timeoutinterval);
@@ -326,7 +457,10 @@ player2nameinputform.addEventListener("change", function () {
                 }
                 else {
                     turn = 1;
-                    gamemessage.textContent = player1name + " it is your turn now";
+                    $("#gamemessage").fadeOut(textfadeout, function () {
+                        $("#gamemessage").text(player1name + " it is your turn").fadeIn(textfadeout)
+
+                    })
 
                 }
 
@@ -357,7 +491,12 @@ function win() {
         if (board[0].innerHTML === player1symbol) {
             
             player1wins++;
-            document.querySelector("#player1wins").textContent = player1wins;
+            $("#player1wins").fadeOut(textfadeout, function () {
+                $("#player1wins").text(player1wins).fadeIn(textfadeout)
+
+            })
+
+           
             // display winning board animation
             
             winsound.play();
@@ -390,7 +529,12 @@ function win() {
                 }
 
             }, flashinterval);
-            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
+
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player1name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
+            
             
             window.setTimeout(function () {
                 //call clear board function
@@ -409,7 +553,13 @@ function win() {
         else {
             
             player2wins++;
-            document.querySelector("#player2wins").textContent = player2wins;
+
+            $("#player2wins").fadeOut(textfadeout, function () {
+                $("#player2wins").text(player2wins).fadeIn(textfadeout)
+
+            })
+
+            
             // display winning board animation
             winsound.play();
 
@@ -441,7 +591,10 @@ function win() {
 
             }, flashinterval);
 
-            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player2name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
@@ -462,7 +615,10 @@ function win() {
         if (board[3].innerHTML === player1symbol) {
             
             player1wins++;
-            document.querySelector("#player1wins").textContent = player1wins;
+            $("#player1wins").fadeOut(textfadeout, function () {
+                $("#player1wins").text(player1wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
 
             winsound.play();
@@ -494,7 +650,10 @@ function win() {
 
             }, flashinterval);
 
-            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player1name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
@@ -509,7 +668,10 @@ function win() {
         else {
             
             player2wins++;
-            document.querySelector("#player2wins").textContent = player2wins;
+            $("#player2wins").fadeOut(textfadeout, function () {
+                $("#player2wins").text(player2wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -540,7 +702,10 @@ function win() {
                 }
 
             }, flashinterval);
-            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player2name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
 
             window.setTimeout(function () {
                 //call clear board function
@@ -560,7 +725,10 @@ function win() {
         if (board[6].innerHTML === player1symbol) {
             
             player1wins++;
-            document.querySelector("#player1wins").textContent = player1wins;
+            $("#player1wins").fadeOut(textfadeout, function () {
+                $("#player1wins").text(player1wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -592,7 +760,10 @@ function win() {
 
             }, flashinterval);
 
-            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player1name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
@@ -607,7 +778,10 @@ function win() {
         else {
            
             player2wins++;
-            document.querySelector("#player2wins").textContent = player2wins;
+            $("#player2wins").fadeOut(textfadeout, function () {
+                $("#player2wins").text(player2wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -639,7 +813,10 @@ function win() {
 
             }, flashinterval);
 
-            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player2name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
@@ -659,7 +836,10 @@ function win() {
         if (board[0].innerHTML === player1symbol) {
             
             player1wins++;
-            document.querySelector("#player1wins").textContent = player1wins;
+            $("#player1wins").fadeOut(textfadeout, function () {
+                $("#player1wins").text(player1wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -690,7 +870,10 @@ function win() {
                 }
 
             }, flashinterval);
-            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player1name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
 
             window.setTimeout(function () {
                 //call clear board function
@@ -707,7 +890,10 @@ function win() {
         else {
             
             player2wins++;
-            document.querySelector("#player2wins").textContent = player2wins;
+            $("#player2wins").fadeOut(textfadeout, function () {
+                $("#player2wins").text(player2wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -739,7 +925,10 @@ function win() {
 
             }, flashinterval);
 
-            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player2name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
@@ -759,7 +948,10 @@ function win() {
         if (board[1].innerHTML === player1symbol) {
            
             player1wins++;
-            document.querySelector("#player1wins").textContent = player1wins;
+            $("#player1wins").fadeOut(textfadeout, function () {
+                $("#player1wins").text(player1wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -790,7 +982,10 @@ function win() {
                 }
 
             }, flashinterval);
-            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player1name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
 
             window.setTimeout(function () {
                 //call clear board function
@@ -804,7 +999,10 @@ function win() {
         else {
            
             player2wins++;
-            document.querySelector("#player2wins").textContent = player2wins;
+            $("#player2wins").fadeOut(textfadeout, function () {
+                $("#player2wins").text(player2wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -836,7 +1034,10 @@ function win() {
 
             }, flashinterval);
 
-            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player2name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
@@ -857,7 +1058,10 @@ function win() {
         if (board[2].innerHTML === player1symbol) {
             
             player1wins++;
-            document.querySelector("#player1wins").textContent = player1wins;
+            $("#player1wins").fadeOut(textfadeout, function () {
+                $("#player1wins").text(player1wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -889,7 +1093,10 @@ function win() {
 
             }, flashinterval);
 
-            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player1name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
@@ -905,7 +1112,10 @@ function win() {
         else {
             
             player2wins++;
-            document.querySelector("#player2wins").textContent = player2wins;
+            $("#player2wins").fadeOut(textfadeout, function () {
+                $("#player2wins").text(player2wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -937,7 +1147,10 @@ function win() {
 
             }, flashinterval);
 
-            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player2name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
@@ -957,7 +1170,10 @@ function win() {
         if (board[0].innerHTML === player1symbol) {
             
             player1wins++;
-            document.querySelector("#player1wins").textContent = player1wins;
+            $("#player1wins").fadeOut(textfadeout, function () {
+                $("#player1wins").text(player1wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -988,7 +1204,10 @@ function win() {
                 }
 
             }, flashinterval);
-            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player1name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
 
             window.setTimeout(function () {
                 //call clear board function
@@ -1003,7 +1222,10 @@ function win() {
         else {
             
             player2wins++;
-            document.querySelector("#player2wins").textContent = player2wins;
+            $("#player2wins").fadeOut(textfadeout, function () {
+                $("#player2wins").text(player2wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -1035,7 +1257,10 @@ function win() {
 
             }, flashinterval);
 
-            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player2name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
@@ -1055,7 +1280,10 @@ function win() {
         if (board[2].innerHTML === player1symbol) {
             
             player1wins++;
-            document.querySelector("#player1wins").textContent = player1wins;
+            $("#player1wins").fadeOut(textfadeout, function () {
+                $("#player1wins").text(player1wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -1087,7 +1315,10 @@ function win() {
 
             }, flashinterval);
 
-            gamemessage.textContent = player1name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player1name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
             window.setTimeout(function () {
                 //call clear board function
                 intializeboard();
@@ -1101,7 +1332,10 @@ function win() {
         else{ 
 
             player2wins++;
-            document.querySelector("#player2wins").textContent = player2wins;
+            $("#player2wins").fadeOut(textfadeout, function () {
+                $("#player2wins").text(player2wins).fadeIn(textfadeout)
+
+            })
             // display winning board animation
             winsound.play();
 
@@ -1132,7 +1366,10 @@ function win() {
                 }
 
             }, flashinterval);
-            gamemessage.textContent = player2name + " won this game. We are all set to start the game. Running random turn algorithm";
+            $("#gamemessage").fadeOut(textfadeout, function () {
+                $("#gamemessage").text(player2name + " won this game. We are all set to start the game. Running random turn algorithm").fadeIn(textfadeout)
+
+            })
 
             window.setTimeout(function () {
                 //call clear board function
@@ -1165,7 +1402,13 @@ function tie() {
 
     }
     gamestied++;
-    document.querySelector("#gamestied").textContent = gamestied;
+
+    $("#gamestied").fadeOut(textfadeout, function () {
+        $("#gamestied").text(gamestied).fadeIn(textfadeout)
+
+    })
+
+    
        
     return true;
 
@@ -1176,7 +1419,12 @@ var resetbutton = document.querySelector("#reset")
 resetbutton.addEventListener("click", function () {
 
     gameon = false;
-    gamemessage.textContent = "Welcome to Tic Tac Toe";
+    $("#gamemessage").fadeOut(textfadeout, function () {
+        $("#gamemessage").text("Welcome to Tic Tac Toe").fadeIn(textfadeout)
+
+    })
+
+    
     intializeboard();
     player1name = "";
     player2name = "";
@@ -1192,9 +1440,24 @@ resetbutton.addEventListener("click", function () {
     player1buttonx.style.visibility = 'visible';
     player2buttono.style.visibility = 'visible';
     player2buttonx.style.visibility = 'visible';
-    document.querySelector("#player1wins").textContent = '0'
-    document.querySelector("#player2wins").textContent = '0'
-    document.querySelector("#gamestied").textContent = '0'
+    
+
+    $("#player1wins").fadeOut(textfadeout, function () {
+        $("#player1wins").text(player1wins).fadeIn(textfadeout)
+
+    })
+
+    $("#player2wins").fadeOut(textfadeout, function () {
+        $("#player2wins").text(player2wins).fadeIn(textfadeout)
+
+    })
+
+
+
+    $("#gamestied").fadeOut(textfadeout, function () {
+        $("#gamestied").text(gamestied).fadeIn(textfadeout)
+
+    })
 
 
 

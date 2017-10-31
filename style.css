@@ -194,11 +194,10 @@ td:before {
 }
 
 button {
-    
-    background-color: darkslategrey;
+    background-color: #337ab7;
     transition: all 0.3s;
     color: whitesmoke;
-    border-color: darkslategrey;
-    outline:none;
+    border-color: #337ab7;
+    outline: none;
 }
 
